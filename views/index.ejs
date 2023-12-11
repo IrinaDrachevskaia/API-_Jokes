@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API project</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <% if (context === ""){ %>
+            <h1>Let's find the Joke 😉</h1>
+        <% } else if (context === "No Jokes Found 😞 Try Again!") { %>
+            <h1 style="color: red;"><%= context %></h1>
+        <% } else if (typeof(context) === "object"){ %>
+            <h1>Your Jokes 🤭</h1>
+            <div class="box joke">
+                <ol>
+                    <% for (let i=0; i<context.length; i++){ %>
+                        <% if (context[i].type === "single"){ %>
+                            <li><%= context[i].joke %></li> 
+                        <% } else {%>
+                            <li><%= context[i].setup %> - <%= context[i].delivery %></li>
+                        <% } %>
+                    <% } %>
+                </ol>
+            </div>
+            
+        <% } else { %>
+            <h1>Your Joke 🤭</h1>
+            <div class="box joke">
+                <h3><%= context %></h3>
+            </div>
+        <% } %>
+        <div>
+            <form action="/joke" id="form" class="form" method="POST">
+            
+                
+                <h2>Select category</h2>
+                <div class="box">
+                    <div>
+                        <input type="radio" name="catSelect" value="any" id="cat-radio1" onchange="reRender()"><label for="cat-radio1">Any</label>
+                    </div>
+            
+                    <div>
+                        <input type="radio" name="catSelect" value="multi" id="cat-radio2" onchange="reRender()"><label for="cat-radio2">Custom:</label>
+                        <span id="catSelectMulti">
+                            <input type="checkbox" name="CategoryName" id="cat-cb1" value="Programming" onchange="reRender()" ><label for="cat-cb1">Programming</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb2" value="Misc" onchange="reRender()" ><label for="cat-cb2">Misc</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb3" value="Dark" onchange="reRender()" ><label for="cat-cb3">Dark</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb4" value="Pun" onchange="reRender()" ><label for="cat-cb4">Pun</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb5" value="Spooky" onchange="reRender()" ><label for="cat-cb5">Spooky</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb6" value="Christmas" onchange="reRender()" ><label for="cat-cb6">Christmas</label>
+                        </span>
+                    </div>
+                </div>
+                <h2>Select language</h2>
+                <div class="box">
+                    <div class="multiselect noselect">
+                        <select id="lcodeSelect" class="appendLangOpts" name="language"><option value="cs">cs - Czech</option><option value="de">de - German</option><option value="en">en - English</option><option value="es">es - Spanish</option><option value="fr">fr - French</option><option value="pt">pt - Portuguese</option></select>
+                    </div>
+                </div>
+                <h2>Select flags to blacklist</h2>
+                <div class="box">
+                    <div class="multiselect noselect">
+                        (optional)&nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" id="blf-cb1" name="blackList" value="nsfw" onchange="reRender()"><label for="blf-cb1">nsfw</label>
+                        <input type="checkbox" id="blf-cb2" name="blackList" value="religious" onchange="reRender()"><label for="blf-cb2">religious</label>
+                        <input type="checkbox" id="blf-cb3" name="blackList" value="political" onchange="reRender()"><label for="blf-cb3">political</label>
+                        <input type="checkbox" id="blf-cb4" name="blackList" value="racist" onchange="reRender()"><label for="blf-cb4">racist</label>
+                        <input type="checkbox" id="blf-cb5" name="blackList" value="sexist" onchange="reRender()"><label for="blf-cb5">sexist</label>
+                        <input type="checkbox" id="blf-cb6" name="blackList" value="explicit" onchange="reRender()"><label for="blf-cb6">explicit</label>
+                    </div>
+                </div>
+                <h2>Select at least one joke type</h2>
+                <div class="box">
+                    <div class="multiselect noselect" id="typeSelectWrapper" style="border-color: initial;">
+                        <input type="checkbox" id="typ-cb1" name="type" value="single" onchange="reRender()"><label for="typ-cb1">single</label>
+                        <input type="checkbox" id="typ-cb2" name="type" value="twopart" onchange="reRender()"><label for="typ-cb2">twopart</label>
+                    </div>
+                </div>
+                <h2>Select for a joke that contains this search string: </h2>
+                <div class="box">
+                    <div class="multiselect noselect">
+                        <input type="text" id="searchStringInput" name="contains" oninput="reRender()" placeholder="(optional)">
+                    </div>
+                </div>
+                <h2>Amounts of jokes</h2>
+                <div class="box">
+                    <div class="multiselect noselect" id="jokeAmountWrapper" style="border-color: initial;">
+                        <input type="number" id="jokesAmountInput" name="amount" value="1" min="1" step="1" oninput="reRender()" max="10">
+                    </div>
+                </div>
+                <button type="submit" class="form-submit">Submit</button>
+            
+          
+            </form>
+        </div>
+
+      </div>
+
+      <script>
+        $(document).ready(function () {
+            $.get('/restoreState', function(data) {
+            if (data.catRadio2Checked) {
+                $('#cat-radio2').prop('checked', true);
+                $('#cat-radio2').trigger('change'); // Запустить событие change
+            } else if (data.catRadio1Checked) {
+                $('#cat-radio1').prop('checked', true);
+                $('#cat-radio1').trigger('change'); // Запустить событие change
+            }
+        });
+
+        // Сохранение состояния при изменении для cat-radio2
+        $('#cat-radio2').on('change', function() {
+            const isChecked = $(this).prop('checked');
+            $.post('/saveState', { catRadio2Checked: isChecked });
+            $('#catSelectMulti input[type="checkbox"]').prop('disabled', !isChecked);
+        });
+
+        // Сохранение состояния при изменении для cat-radio1
+        $('#cat-radio1').on('change', function() {
+            const isChecked = $(this).prop('checked');
+            $.post('/saveState', { catRadio1Checked: isChecked });
+
+            // Добавление условия для включения/выключения атрибута disabled
+            $('#catSelectMulti input[type="checkbox"]').prop('disabled', isChecked);
+        });
+    });
+    </script>
+</body>
+</html>

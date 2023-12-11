@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.box {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.joke {
+    background-color: lightblue;
+}
+
+.joke li {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+button {
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+}
+
+#searchStringInput {
+    width: 99%;
+    height: 2rem;
+}
+
+.form-submit {
+    background-color: lightblue;
+    font-weight: bold;
+    border-radius: 5px;
+}
