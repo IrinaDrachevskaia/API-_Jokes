@@ -41,18 +41,18 @@
                 <h2>Select category</h2>
                 <div class="box">
                     <div>
-                        <input type="radio" name="catSelect" value="any" id="cat-radio1" onchange="reRender()"><label for="cat-radio1">Any</label>
+                        <input type="radio" name="catSelect" value="any" id="cat-radio1"><label for="cat-radio1">Any</label>
                     </div>
             
                     <div>
-                        <input type="radio" name="catSelect" value="multi" id="cat-radio2" onchange="reRender()"><label for="cat-radio2">Custom:</label>
+                        <input type="radio" name="catSelect" value="multi" id="cat-radio2"><label for="cat-radio2">Custom:</label>
                         <span id="catSelectMulti">
-                            <input type="checkbox" name="CategoryName" id="cat-cb1" value="Programming" onchange="reRender()" ><label for="cat-cb1">Programming</label>
-                            <input type="checkbox" name="CategoryName" id="cat-cb2" value="Misc" onchange="reRender()" ><label for="cat-cb2">Misc</label>
-                            <input type="checkbox" name="CategoryName" id="cat-cb3" value="Dark" onchange="reRender()" ><label for="cat-cb3">Dark</label>
-                            <input type="checkbox" name="CategoryName" id="cat-cb4" value="Pun" onchange="reRender()" ><label for="cat-cb4">Pun</label>
-                            <input type="checkbox" name="CategoryName" id="cat-cb5" value="Spooky" onchange="reRender()" ><label for="cat-cb5">Spooky</label>
-                            <input type="checkbox" name="CategoryName" id="cat-cb6" value="Christmas" onchange="reRender()" ><label for="cat-cb6">Christmas</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb1" value="Programming"><label for="cat-cb1">Programming</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb2" value="Misc"><label for="cat-cb2">Misc</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb3" value="Dark"><label for="cat-cb3">Dark</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb4" value="Pun"><label for="cat-cb4">Pun</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb5" value="Spooky"><label for="cat-cb5">Spooky</label>
+                            <input type="checkbox" name="CategoryName" id="cat-cb6" value="Christmas"><label for="cat-cb6">Christmas</label>
                         </span>
                     </div>
                 </div>
@@ -66,31 +66,31 @@
                 <div class="box">
                     <div class="multiselect noselect">
                         (optional)&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" id="blf-cb1" name="blackList" value="nsfw" onchange="reRender()"><label for="blf-cb1">nsfw</label>
-                        <input type="checkbox" id="blf-cb2" name="blackList" value="religious" onchange="reRender()"><label for="blf-cb2">religious</label>
-                        <input type="checkbox" id="blf-cb3" name="blackList" value="political" onchange="reRender()"><label for="blf-cb3">political</label>
-                        <input type="checkbox" id="blf-cb4" name="blackList" value="racist" onchange="reRender()"><label for="blf-cb4">racist</label>
-                        <input type="checkbox" id="blf-cb5" name="blackList" value="sexist" onchange="reRender()"><label for="blf-cb5">sexist</label>
-                        <input type="checkbox" id="blf-cb6" name="blackList" value="explicit" onchange="reRender()"><label for="blf-cb6">explicit</label>
+                        <input type="checkbox" id="blf-cb1" name="blackList" value="nsfw"><label for="blf-cb1">nsfw</label>
+                        <input type="checkbox" id="blf-cb2" name="blackList" value="religious"><label for="blf-cb2">religious</label>
+                        <input type="checkbox" id="blf-cb3" name="blackList" value="political"><label for="blf-cb3">political</label>
+                        <input type="checkbox" id="blf-cb4" name="blackList" value="racist"><label for="blf-cb4">racist</label>
+                        <input type="checkbox" id="blf-cb5" name="blackList" value="sexist"><label for="blf-cb5">sexist</label>
+                        <input type="checkbox" id="blf-cb6" name="blackList" value="explicit"><label for="blf-cb6">explicit</label>
                     </div>
                 </div>
                 <h2>Select at least one joke type</h2>
                 <div class="box">
                     <div class="multiselect noselect" id="typeSelectWrapper" style="border-color: initial;">
-                        <input type="checkbox" id="typ-cb1" name="type" value="single" onchange="reRender()"><label for="typ-cb1">single</label>
-                        <input type="checkbox" id="typ-cb2" name="type" value="twopart" onchange="reRender()"><label for="typ-cb2">twopart</label>
+                        <input type="checkbox" id="typ-cb1" name="type" value="single"><label for="typ-cb1">single</label>
+                        <input type="checkbox" id="typ-cb2" name="type" value="twopart"><label for="typ-cb2">twopart</label>
                     </div>
                 </div>
                 <h2>Select for a joke that contains this search string: </h2>
                 <div class="box">
                     <div class="multiselect noselect">
-                        <input type="text" id="searchStringInput" name="contains" oninput="reRender()" placeholder="(optional)">
+                        <input type="text" id="searchStringInput" name="contains" placeholder="(optional)">
                     </div>
                 </div>
                 <h2>Amounts of jokes</h2>
                 <div class="box">
                     <div class="multiselect noselect" id="jokeAmountWrapper" style="border-color: initial;">
-                        <input type="number" id="jokesAmountInput" name="amount" value="1" min="1" step="1" oninput="reRender()" max="10">
+                        <input type="number" id="jokesAmountInput" name="amount" value="1" min="1" step="1" max="10">
                     </div>
                 </div>
                 <button type="submit" class="form-submit">Submit</button>

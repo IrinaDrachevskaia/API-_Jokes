@@ -83,7 +83,7 @@ app.post("/joke", async (req, res) => {
     } catch (error) {
         console.error("Failed to make request:", error.message);
         res.render("index.ejs", {
-            context: error.message,
+            context: error.message,e
         });
     }
 });
